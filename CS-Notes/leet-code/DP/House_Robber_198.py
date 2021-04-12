@@ -21,15 +21,35 @@
 
 提示：
 
-0 <= nums.length <= 100
+1 <= nums.length <= 100
 0 <= nums[i] <= 400
+
+来源：力扣（LeetCode）
+链接：https://leetcode-cn.com/problems/house-robber
+著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
 '''
 
 def MySolution(nums: list) -> int: 
-    pass 
+    n = len(nums)
+    if n < 3: 
+        return max(nums)
+    dp = [[nums[0], 0], [nums[1], nums[0]]]
+    for i in range(2, n):
+        dp.append([0, 0])
+        dp[i][0] = nums[i] + max(dp[i-2])
+        dp[i][1] = max(dp[i-1])
+    return max(dp[-1])
+
+def solution(nums: list) -> int:
+    pre1, pre2 = 0, 0 
+    for i in range(len(nums)): 
+        cur = max(pre1+nums[i], pre2)
+        pre1, pre2 = pre2, cur
+    return pre2
 
 def main(): 
-    pass
+    # print(MySolution(list(map(int, input().split()))))
+    print(solution(list(map(int, input().split()))))
 
 if __name__ == '__main__': 
     main()
