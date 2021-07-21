@@ -24,6 +24,14 @@ def solution(headA: ListNode, headB: ListNode) -> ListNode:
         h2 = headA if not h2 else h2.next 
     return h1 
 
+'''
+设交集链表长c,链表1除交集的长度为a，链表2除交集的长度为b，有
+
+a + c + b = b + c + a
+若无交集，则a + b = b + a
+
+'''
+
 # def main(): 
 #     listNodeA = stringToListNode(input()) 
 #     listNodeB = stringToListNode(input())
